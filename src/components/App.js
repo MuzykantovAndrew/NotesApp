@@ -1,7 +1,10 @@
 import React from 'react';
-import StarWars from './StarWars'
+import Notes from './Notes'
 import Header from './Header'
 import Footer from './Footer'
+
+
+
 
 
 function App() {
@@ -15,3 +18,6 @@ function App() {
 }
 
 export default App;
+
+
+

@@ -22,10 +22,34 @@ const reducer = (state = {}, action) => {
                 authCheck: false,
                 errorMessage: action.error
             }
-        case type.Update_User_In_State:
+        case type.LOG_OUT:
+            window.localStorage.removeItem("mytrellocredentials");
+            window.localStorage.removeItem("currentUserId")
+            return{
+                ...state,
+                user: null,
+                authCheck: true,
+                errorMessage: null
+            }
+        case type.UPDATE_USER_IN_STATE:
             return { 
                 ...state,
                 user: action.user
+            }
+        case type.UPDATE_TASKS_IN_STATE:
+            return { 
+                ...state,
+                tasks: action.tasks
+            }
+        case type.UPDATE_TASKS_IN_STATE:
+            return { 
+                ...state,
+                tasks: action.tasks
+            }
+        case type.UPDATE_TASKS_IN_STATE:
+            return { 
+                ...state,
+                task: action.task
             }
         default:
             return state;

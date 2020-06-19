@@ -1,37 +1,30 @@
 import React from 'react'
-import Signup from './Signup'
-import Films from './Films'
-import Planets from './Planets'
-import Starship from './Starship'
-import Transport from './Transport'
-import './css/starWars.css'
+import LogIn from '../Containers/LogInContainer'
+import Signup from '../Containers/SignUpContainer'
+import Main from '../Containers/MainContainer'
 import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom'
 
-class StarWars extends React.Component {x
-    constructor(props) {
-        super(props)
-    }
+
+class Notes extends React.Component {x
+    
     render() {
         return (
             <Router>
                 <ul className='menu'>
-                    <li><NavLink activeClassName="active" exact to='/'>Characters</NavLink></li>
-                    {/* <li><NavLink activeClassName="active" to='/films'>Films</NavLink></li>
-                    <li><NavLink activeClassName="active" to='/planets'>Planets</NavLink></li>
-                    <li><NavLink activeClassName="active" to='/starship'>Starships</NavLink></li>
-                    <li><NavLink activeClassName="active" to='/transport'>Transport</NavLink></li> */}
+                    <li><NavLink activeClassName="active" exact to='/'>LogIn</NavLink></li>
+                    <li><NavLink activeClassName="active" to='/Signup'>Signup</NavLink></li>
+                    <li><NavLink activeClassName="active" to='/Main'>TaskNote</NavLink></li>
                 </ul>
 
                 <Switch>
-                    <Route path='/' exact component={Signup} />
-                    <Route path='/films' component={Films} />
-                    <Route path='/planets' component={Planets} />
-                    <Route path='/starship' component={Starship} />
-                    <Route path='/transport' component={Transport} />
+                    <Route path='/' exact component={LogIn} />
+                    <Route path='/Signup' component={Signup} />
+                    <Route path='/Main' component={Main} />
+                    
                 </Switch>
             </Router>
         )
     }
 }
 
-export default StarWars;
+export default Notes;

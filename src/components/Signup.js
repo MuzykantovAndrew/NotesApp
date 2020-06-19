@@ -1,14 +1,14 @@
 import React from 'react'
-import '../Styles/Auth.css';
 import { Link, useHistory } from "react-router-dom"
 
 class Signup extends React.Component{
     state = {
-        User_FirstName: "",
-        User_LastName: "",
-        User_PhotoPath: "",
-        User_Email: "",
-        User_Password: ""
+        Name: "",
+        LastName: "",
+        Login: "",
+        Password: "",
+        Info : "",
+        Role : "User"
     }
     
 
@@ -35,7 +35,7 @@ class Signup extends React.Component{
             this.props.logInSuccess(jsn.data, jsn.data.token);
             this.props.history.push("/main")
         } else {
-            this.props.logInError("This email is already in use");
+            this.props.logInError("This login is already in use");
             }
         
     }
@@ -45,47 +45,52 @@ class Signup extends React.Component{
             <div className="sign-up-container">
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="User_FirstName" className="whiteText">First Name</label>
+                        <label htmlFor="Name" className="whiteText">Name</label>
                         <input  type="text"
-                                placeholder="Tom"
                                 className="form-control" 
-                                id="User_FirstName" 
-                                name="User_FirstName"
-                                value={this.state.User_FirstName}
-                                onChange={this.handleChange}></input>
-                        <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="User_LastName" className="whiteText">Second Name</label>
-                        <input  type="text"
-                                placeholder="Jerry"
-                                className="form-control"
-                                id="User_LastName" 
-                                name="User_LastName"
-                                value={this.state.User_LastName}
+                                id="Name" 
+                                name="Name"
+                                value={this.state.Name}
                                 onChange={this.handleChange}></input>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="User_Email" className="whiteText">Email address</label>
+                        <label htmlFor="Lastname" className="whiteText">LastName</label>
                         <input  type="text"
-                                placeholder="tom123@gmail.com"
                                 className="form-control"
-                                id="User_Email" 
-                                name="User_Email"
-                                value={this.state.User_Email}
+                                id="Lastname" 
+                                name="Lastname"
+                                value={this.state.Lastname}
+                                onChange={this.handleChange}></input>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="Info" className="whiteText">Info</label>
+                        <input  type="text"
+                                className="form-control"
+                                id="Info" 
+                                name="Info"
+                                value={this.state.Info}
+                                onChange={this.handleChange}></input>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="Login" className="whiteText">Login</label>
+                        <input  type="text"
+                                className="form-control"
+                                id="Login" 
+                                name="Login"
+                                value={this.state.Login}
                                 onChange={this.handleChange}/>
                     </div>
                     <div className="form-group">
-                        <label className="form-check-label whiteText" htmlFor="password">Password</label>
-                        <input type="password" className="form-control" id="User_Password"
-                               name="User_Password"
-                               value={this.state.User_Password}
+                        <label className="form-check-label whiteText" htmlFor="Password">Password</label>
+                        <input type="password" className="form-control" id="Password"
+                               name="Password"
+                               value={this.state.Password}
                                onChange={this.handleChange}/>
                     </div>
                     <input type="submit" className="btn btn-info"/>
                     <hr className="hr-line"/>
                     <div className="form-group">
-                        <Link className="link" to="/logIn"><span>Already have an account? Log In</span></Link>
+                        <Link className="link" to="/"><span>Already have an account? Log In</span></Link>
                     </div>
                     {!this.props.authCheck ? (
                                             <div className="alert alert-danger errorBlockShow">{this.props.errorMessage}</div>

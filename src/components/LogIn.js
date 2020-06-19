@@ -1,21 +1,20 @@
 import React from 'react'
-import '../Styles/Auth.css';
+
 
 import { Link, useHistory } from "react-router-dom"
 
-function LogIn (props){
+function LogIn(props) {
     const history = useHistory();
-    let regExp = /^[\w.+\-]+@gmail\.com$/
 
-    const log_in = async function (email, password) {
-        let url = "http://localhost:5000/api/authenticate/auth";
+    const log_in = async function (login, password) {
+        let url = "http://localhost:5000/api/auth/authenticate";
         let credentials = {
-            'User_Email': email,
-            'User_Password': password
-        }
-        
-        if (!(email.match(regExp) && password != "")) {
-            return props.logInError("Invalid email or password")
+            'Login': login,
+            'Password': password,
+            'Name': "John",
+            'Lastname': "Wick",
+            'Role': "User",
+            'Info': "killer"
         }
 
         await fetch(url, { 
@@ -33,46 +32,48 @@ function LogIn (props){
                 
             });
         })
-        .catch(err => {
-            console.log(err);
-        })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     return (
         <div className="log-in-container">
             <form>
                 <div className="form-group">
-                    <label htmlFor="email" className="whiteText">Email address</label>
-                    <input  type="text"
-                            placeholder="tom123@gmail.com"
-                            className="form-control"
-                            id="login_email" 
-                            name="email"
-                            value={props.email}
-                            onChange={e => props.changeInput(e.target.value, e.target.name)}/>
+                    <label htmlFor="login" className="whiteText">login</label>
+                    <input type="text"
+                        placeholder=""
+                        className="form-control"
+                        id="login"
+                        name="login"
+                        value={props.login}
+                        onChange={e => props.changeInput(e.target.value, e.target.name)}
+                    />
                 </div>
                 <div className="form-group">
                     <label className="form-check-label whiteText" htmlFor="password">Password</label>
-                    <input type="password" 
-                        className="form-control" 
+                    <input type="password"
+                        className="form-control"
                         id="login_password"
                         name="password"
                         value={props.password}
-                        onChange={e => props.changeInput(e.target.value, e.target.name)}/>
+                        onChange={e => props.changeInput(e.target.value, e.target.name)}
+                    />
                 </div>
-                <input type="button" 
-                        className="btn btn-info"
-                        id="login_btn"
-                        onClick={() => log_in(props.email, props.password)}
-                        value="Continue"/>
-                
-                <hr className="hr-line"/>
+                <input type="button"
+                    className="btn btn-info"
+                    id="login_btn"
+                    onClick={() => log_in(props.login, props.password)}
+                    value="Continue" />
+
+                <hr className="hr-line" />
                 <div className="form-group">
                     <Link className="link" to="/signUp"><span>Sign up for an account</span></Link>
                 </div>
                 {!props.authCheck ? (
-                                            <div className="alert alert-danger errorBlockShow">{props.errorMessage}</div>
-                                        ) : null }  
+                    <div className="alert alert-danger errorBlockShow">{props.errorMessage}</div>
+                ) : null}
             </form>
         </div>
     )
